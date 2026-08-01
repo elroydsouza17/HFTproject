@@ -52,6 +52,7 @@ int main()
 
 
     /*delete value from DB*/
+
     leveldb::Status delStatus = db->Delete(writeOptions, "name");
 
         if(!delStatus.ok()) 
@@ -62,9 +63,11 @@ int main()
 
     cout << "del STATUS:" << readStatus.ToString() << endl;
 
+    /*read if value is present after delete*/
+
     readStatus = db->Get(readOptions, "name", &str);
 
-        if(!readStatus.ok()) 
+    if(!readStatus.ok()) 
     {
         cout << "READ STATUS:" << readStatus.ToString() << endl;
         return 1;    
